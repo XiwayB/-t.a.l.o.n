@@ -24,6 +24,6 @@ ActiveRecord::Schema.define(version: 2021_04_05_134421) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "open_id"
-  end
 
+  end
 end
