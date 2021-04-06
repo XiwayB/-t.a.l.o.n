@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  validates :wechat_account, :role, :pictures, :location, :status,:open_id, presence: true
+  validates :wechat_account, :role, :location, :status, :open_id, presence: true
 end
 
