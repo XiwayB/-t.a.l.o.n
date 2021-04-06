@@ -1,11 +1,11 @@
-class Api::V1::StoriesController < Api::V1::BaseController
+class Api::V1::UsersController < Api::V1::BaseController
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
   before_action :set_user, only: [:show, :update]
 
   def index
     # display the users in the homepage
     @users = User.all
-    render json: @users
+    # render json: @users
   end
 
   def show; end
@@ -18,8 +18,6 @@ class Api::V1::StoriesController < Api::V1::BaseController
       render_error
     end
   end
-
-
 
   def login
     # user can login/signin in the app
