@@ -30,11 +30,15 @@ class Api::V1::UsersController < Api::V1::BaseController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    p "user", params[:id]
+    id = params[:id]
+    user = User.find(id.to_i)
+    p "user", user
+    @user = user
   end
 
   def user_params
-    params.require(:user).permit(:wechat_account, :role, :pictures, :location, :status, :open_id)
+    params.require(:user).permit(:wechat_account, :role, :pictures, :status, :open_id, location: {})
   end
 
   def render_error
