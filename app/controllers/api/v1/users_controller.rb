@@ -45,8 +45,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def wechat_user
     wechat_params = {
-      appId: ENV["WECHAT_APP_ID"],
-      secret: ENV["WECHAT_APP_SECRET"],
+      appId: Rails.application.credentials.dig(:wechat_app_id),
+      secret: Rails.application.credentials.dig(:wechat_app_secret),
       js_code: params[:code],
       grant_type: "authorization_code"
     }
