@@ -23,7 +23,10 @@ class Api::V1::UsersController < Api::V1::BaseController
     # user can login/signin in the app
     @user = User.find_or_create_by(open_id: wechat_user.fetch("openid"))
     render json: {
-      userId: @user.id
+      userId: @user.id,
+      hasUserInfo: @user.wechat_account.present?,
+      currentUser: @user
+
     }
   end
 
