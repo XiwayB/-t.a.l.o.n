@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update, :updatePhoto]
 
   def index
     # display the users in the homepage
@@ -9,6 +9,13 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show; end
+
+  def updatePhoto
+    if @user.update(photos_params)
+    else
+      render_error
+    end
+  end
 
   def update
     # a user can update the status/role
@@ -39,6 +46,10 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def user_params
     params.require(:user).permit(:wechat_account, :role, :pictures, :status, :open_id, photos: [], location: {})
+  end
+
+  def photos_params
+    params.require(:user).permit(photos: [])
   end
 
   def render_error
