@@ -38,7 +38,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:wechat_account, :role, :pictures, :status, :open_id, location: {})
+    params.require(:user).permit(:wechat_account, :role, :pictures, :status, :open_id, photos: [], location: {})
   end
 
   def render_error

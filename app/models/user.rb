@@ -6,5 +6,7 @@ class User < ApplicationRecord
   validates :status, inclusion: { in: STATUS }, presence: true
 
   serialize :location
+
+  has_many_attached :photos
 end
 
