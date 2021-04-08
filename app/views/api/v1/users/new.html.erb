@@ -1,0 +1,12 @@
+<%= simple_form_for(@user) do |f| %>
+  <!-- [...] -->
+  <%= f.input :wechat_account %>
+  <%= f.input :role %>
+  <%= f.input :pictures %>
+  <%= f.input :location %>
+  <%= f.input :status %>
+  <%= f.input :open_id %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.button :submit %>
+  <!-- [...] -->
+<% end %>
