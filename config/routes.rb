@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # post '/login', to: 'login#login'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, except: [ :destroy ]
+      resources :users, except: [ :destroy, :new, :edit, :create ]
       post '/login', to: 'users#login'
     end
   end
