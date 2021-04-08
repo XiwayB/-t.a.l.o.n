@@ -40,7 +40,6 @@ class Api::V1::UsersController < Api::V1::BaseController
       userId: @user.id,
       hasUserInfo: @user.wechat_account.present?,
       currentUser: @user
-
     }
   end
 
