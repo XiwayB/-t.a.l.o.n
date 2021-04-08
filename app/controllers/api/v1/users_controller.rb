@@ -37,7 +37,9 @@ class Api::V1::UsersController < Api::V1::BaseController
     open_id = wechat_user.fetch("openid")
     @user = User.find_or_create_by(open_id: open_id)
     render json: {
-      userId: @user.id
+      userId: @user.id,
+      hasUserInfo: @user.wechat_account.present?,
+      currentUser: @user
     }
   end
 
