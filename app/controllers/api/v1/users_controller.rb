@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   URL = "https://api.weixin.qq.com/sns/jscode2session".freeze
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update, :update_photo]
 
   def index
     # display the users in the homepage
@@ -19,9 +19,23 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+  def update_photo
+    photo = params[:photo]
+    p '======================= PHOTO =========================', photo
+    @user.photos.attach(photo)
+    render json: {status: 200, msg: "Photo attached"} if @user.save
+    puts "---------------ERROR-----------------"
+
+    # if @user.update(photos_params)
+    # else
+    #   render_error
+    # end
+  end
+
   def login
     # user can login/signin in the app
-    @user = User.find_or_create_by(open_id: wechat_user.fetch("openid"))
+    open_id = wechat_user.fetch("openid")
+    @user = User.find_or_create_by(open_id: open_id)
     render json: {
       userId: @user.id,
       hasUserInfo: @user.wechat_account.present?,

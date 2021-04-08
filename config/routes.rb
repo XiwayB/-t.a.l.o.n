@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   # post '/login', to: 'login#login'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, except: [ :destroy, :new, :edit, :create ]
+      resources :users, except: [ :destroy, :new, :edit, :create ] do
+        member do
+          post :update_photo
+        end
+      end
       post '/login', to: 'users#login'
     end
   end
