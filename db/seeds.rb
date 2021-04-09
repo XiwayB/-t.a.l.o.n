@@ -8,6 +8,7 @@
 User.destroy_all
 
 User.create!(
+  wechat_account: 'Tom',
   role: 'patient',
   status: 'critical',
   open_id: '1334',
@@ -15,6 +16,7 @@ User.create!(
   )
 
 User.create!(
+  wechat_account: 'Jerry',
   role: 'medic',
   status: 'healthy',
   open_id: '1134',
@@ -22,6 +24,7 @@ User.create!(
   )
 
 User.create!(
+  wechat_account: 'Wuhu',
   role: 'patient',
   status: 'non-critical',
   open_id: '1234',
