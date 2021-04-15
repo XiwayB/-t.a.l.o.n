@@ -177,6 +177,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.5)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -265,6 +266,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.6)
+  redis (~> 4.0)
   rest-client
   sass-rails (>= 6)
   selenium-webdriver
