@@ -5,6 +5,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
     @messages = Message.all
     # find the user
     id = params[:user_id]
+    @user_id = id
     # @messages = @messages.where("user_id = ? OR receiver_id = ?", id, id).order(created_at: :desc)
     @messages = User.find_by_sql ["SELECT DISTINCT users.* FROM users JOIN messages ON messages.receiver_id = users.id WHERE messages.user_id = ?", id]
     # user_messages = @messages.where(receiver_id: id).order(created_at: :desc)
