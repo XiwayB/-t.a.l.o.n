@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   serialize :location
 
+  has_many :messages
+
   has_many_attached :photos
 end
 

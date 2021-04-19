@@ -5,17 +5,17 @@ class Api::V1::MessagesController < Api::V1::BaseController
     @messages = Message.all
     # find the user
     id = params[:user_id]
-    user_messages = @messages.where("user_id = ? OR receiver_id = ?", id, id).order(created_at: :desc)
+    @messages = @messages.where("user_id = ? OR receiver_id = ?", id, id).order(created_at: :desc)
     # user_messages = @messages.where(receiver_id: id).order(created_at: :desc)
 
     # group order by created at
     # order by receiver_id
-    ordered_messages = user_messages.map{ |message| [message.receiver_id, message.receiver.wechat_account]}.uniq
+    # ordered_messages = user_messages.map{ |message| [message.receiver_id, message.receiver.wechat_account, User.find(message.user_id).avatar]}.uniq
     # show the last received on top(in view/frontend?)
 
-    render json: {
-      messages: ordered_messages
-    }
+    # render json: {
+    #   messages: ordered_messages
+    # }
 
     # select distinct
     # @messages = user.messages
@@ -27,16 +27,13 @@ class Api::V1::MessagesController < Api::V1::BaseController
     sender_id = params[:user_id]
     receiver_id = params[:receiver_id]
 
-    user_messages = @messages.where("(user_id = :sender AND receiver_id = :receiver) OR (user_id = :receiver AND receiver_id = :sender)", sender: sender_id, receiver: receiver_id).order(created_at: :asc)
+    @messages = @messages.where("(user_id = :sender AND receiver_id = :receiver) OR (user_id = :receiver AND receiver_id = :sender)", sender: sender_id, receiver: receiver_id).order(created_at: :asc)
 
     # get the messages where the received id is params receiver id
 
 
     # need to pass on frontend wx.request @path = "/api/v1/users/:user_id/messages/show?receiver_id=${receiver_id}"
 
-    render json: {
-      messages: user_messages
-      }
 
   end
 
